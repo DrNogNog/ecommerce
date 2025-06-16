@@ -12,8 +12,10 @@ const CountryDropdown = () => {
 
     const [countryList, setCountryList] = useState([]);
     const context = useContext(MyContext)
-    const selectCountry=(index)=>{
-        setSelectedTab(index)
+    const selectCountry=(index,country)=>{
+        setSelectedTab(index);
+        setisOpenModal(false);
+        context.setselectedCountry(country);
     }
 
     useEffect(()=>{
@@ -22,17 +24,22 @@ const CountryDropdown = () => {
 
     const filterList=(e)=>{
         const keyword = e.target.value.toLowerCase();
-        const list = countryList.filter((item)=>{
-            return item.country.toLowerCase().includes(keyword)
-        });
-        setCountryList(list);
+        if (keyword!==""){
+            const list = countryList.filter((item)=>{
+                return item.country.toLowerCase().includes(keyword)
+            });
+            setCountryList(list);
+        }else{
+            setCountryList(context.countryList);
+        }
+
     }
     return (
         <>
             <Button className='countryDrop' onClick={() => setisOpenModal(true)}>
                 <div className='info d-flex flex-column'>
                     <span className="label">Your Location</span>
-                    <span className="name">USA</span>
+                    <span className="name">{context.selectedCountry!=="" ? context.selectedCountry : "Select Location"}</span>
                 </div>
                 <span className='ml-auto'><FaAngleDown/></span>
             </Button>
@@ -50,7 +57,7 @@ const CountryDropdown = () => {
                     { 
                         countryList?.length!==0 && countryList?.map((item, index)=>{
                             return(
-                                <li key={index}><Button onClick={() => selectCountry(index)} className={`${selectedTab===index ? 'active' : ''}`}>{item.country}</Button></li>
+                                <li key={index}><Button onClick={() => selectCountry(index,item.country)} className={`${selectedTab===index ? 'active' : ''}`}>{item.country}</Button></li>
                             )
                         })
                     }
