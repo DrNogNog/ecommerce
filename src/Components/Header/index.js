@@ -6,7 +6,12 @@ import { IoBagOutline } from "react-icons/io5";
 import { FiUser } from "react-icons/fi";
 import SearchBox from './SearchBox';
 import Navigation from './Navigation';
+import { MyContext } from '../../App';
+import { useContext } from 'react';
 const Header= () =>{
+
+    const context = useContext(MyContext);
+
     return(
         <>
         <div className="headerWrapper">
@@ -22,7 +27,9 @@ const Header= () =>{
                         <Link to={'/'}><img src={Logo} alt='Logo' /></Link>
                     </div>
                     <div className='col-sm-3 d-flex align-items-center part2'>
-                        <CountryDropdown/>
+                        {
+                            context.countryList.length!==0 && <CountryDropdown/>
+                        }
 
                         {/* Header Search Starts Here */}
                         <SearchBox/>

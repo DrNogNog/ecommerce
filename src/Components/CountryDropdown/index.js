@@ -4,9 +4,11 @@ import { FaAngleDown } from 'react-icons/fa';
 import Dialog from '@mui/material/Dialog';
 import { IoSearchOutline } from "react-icons/io5";
 import { MdClose } from "react-icons/md";
-
+import { MyContext } from '../../App';
+import { useContext } from 'react';
 const CountryDropdown = () => {
     const [isOpenModal, setisOpenModal] = React.useState(false);
+    const context = useContext(MyContext)
 
     return (
         <>
@@ -28,19 +30,13 @@ const CountryDropdown = () => {
                     <Button><IoSearchOutline/></Button>
                 </div>
                 <ul className='countryList mt-3'>
-                    <li><Button onClick={() => setisOpenModal(false)}>United States</Button></li>
-                    <li><Button onClick={() => setisOpenModal(false)}>Brazil</Button></li>
-                    <li><Button onClick={() => setisOpenModal(false)}>Canada</Button></li>
-                    <li><Button onClick={() => setisOpenModal(false)}>United Kingdom</Button></li>
-                    <li><Button onClick={() => setisOpenModal(false)}>United States</Button></li>
-                    <li><Button onClick={() => setisOpenModal(false)}>Brazil</Button></li>
-                    <li><Button onClick={() => setisOpenModal(false)}>Canada</Button></li>
-                    <li><Button onClick={() => setisOpenModal(false)}>United Kingdom</Button></li>
-                    <li><Button onClick={() => setisOpenModal(false)}>United States</Button></li>
-                    <li><Button onClick={() => setisOpenModal(false)}>Brazil</Button></li>
-                    <li><Button onClick={() => setisOpenModal(false)}>Canada</Button></li>
-                    <li><Button onClick={() => setisOpenModal(false)}>United Kingdom</Button></li>
-                    <li><Button onClick={() => setisOpenModal(false)}>United States</Button></li>
+                    { 
+                        context.countryList?.length!==0 && context.countryList?.map((item, index)=>{
+                            return(
+                                <li key={index}><Button onClick={() => setisOpenModal(false)}>{item.country}</Button></li>
+                            )
+                        })
+                    }
                 </ul>
 
             </Dialog>
