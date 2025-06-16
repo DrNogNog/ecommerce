@@ -39,7 +39,13 @@ const CountryDropdown = () => {
             <Button className='countryDrop' onClick={() => setisOpenModal(true)}>
                 <div className='info d-flex flex-column'>
                     <span className="label">Your Location</span>
-                    <span className="name">{context.selectedCountry!=="" ? context.selectedCountry : "Select Location"}</span>
+                    <span className="name">
+                        {context.selectedCountry !== "" 
+                            ? (context.selectedCountry.length > 10 
+                                ? context.selectedCountry.substr(0, 17) + '...' 
+                                : context.selectedCountry)
+                            : "Select Location"}
+                    </span>
                 </div>
                 <span className='ml-auto'><FaAngleDown/></span>
             </Button>
