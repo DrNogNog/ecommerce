@@ -119,3 +119,14 @@ nav{width: 100%;padding: 15px 0;display: block !important;}
 
 .navPart2 ul li .submenu a button:hover{background: #f1f1f1 !important}
 .navPart2 ul li:hover .submenu{opacity: 1; visibility: inherit; top: 100%;}
+
+.homeBannerSection{position:relative; overflow:hidden;}
+.homeBannerSection *{outline: none !important}
+.homeBannerSection .slick-arrow{position:absolute; top: 45%; display: flex; align-items: center; justify-content: center;
+width: 40px !important; height: 40px !important; background: #000; border-radius: 100%; font-family: FontAwesome !important;}
+
+.homeBannerSection .slick-arrow.slick-next{right: 25px;}
+.homeBannerSection .slick-arrow.slick-prev{left: 25px;}
+
+.homeBannerSection .slick-arrow.slick-next::before{font-family: FontAwesome !important; color: #fff;}
+.homeBannerSection .slick-arrow.slick-prev::before{font-family: FontAwesome !important; color: #fff;}
